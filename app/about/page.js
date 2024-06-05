@@ -3,6 +3,8 @@ import Hero from 'components/hero'
 import PostBody from 'components/post-body'
 import Contact from 'components/contact'
 import { TwoColumn, TwoColumnMain, TwoColumnSidebar } from 'components/two-column'
+import Image from 'next/image'
+import eycatch from 'images/about.jpg'
 
 export default function About() {
   return (
@@ -11,6 +13,22 @@ export default function About() {
         title='About'
         subtitle='About development activities'
       />
+
+      <figure>
+        <Image
+          src={eycatch}
+          alt=''
+          sizes='100vw'
+          width={1920}
+          height={960}
+          style={{
+            width: '100%',
+            height: 'auto'
+          }}
+          priority
+          placeholder='blur'
+        />
+      </figure>
 
       <TwoColumn>
         <TwoColumnMain>

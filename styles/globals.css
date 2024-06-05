@@ -45,6 +45,11 @@ h3 {
   font-size: var(--heading3);
 }
 
+/* next/image */
+figure > img {
+  transition: 1s;
+}
+
 /* リセット */
 body, h1, h2, h3, p, figure, ul {
   margin: 0;
