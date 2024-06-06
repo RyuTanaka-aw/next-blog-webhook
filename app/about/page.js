@@ -6,6 +6,13 @@ import { TwoColumn, TwoColumnMain, TwoColumnSidebar } from 'components/two-colum
 import Image from 'next/image'
 import eycatch from 'images/about.jpg'
 
+// サイトに関する情報
+import { siteMeta } from 'lib/constants'
+const { siteTitle, siteUrl } = siteMeta
+
+// ベースのメタデータ
+import { openGraphMetadata, twitterMetadata } from 'lib/baseMetadata'
+
 export default function About() {
   return (
     <Container>
@@ -48,4 +55,33 @@ export default function About() {
       </TwoColumn>
     </Container>
   )
+}
+
+// メタデータ
+const pageTitle = 'アバウト'
+const pageDesc = 'About development activities'
+const ogpTitle = `${pageTitle} | ${siteTitle}`
+const ogpUrl = new URL('/about', siteUrl).toString()
+
+export const metadata = {
+  title: pageTitle,
+  description: pageDesc,
+  openGraph: {
+    ...openGraphMetadata,
+    title: ogpTitle,
+    description: pageDesc,
+    url: ogpUrl,
+    images: [
+      {
+        url: eycatch.src,
+        width: eycatch.width,
+        height: eycatch.height,
+      },
+    ],
+  },
+  twitter: {
+    ...twitterMetadata,
+    description: pageDesc,
+    images: [eycatch.src],
+  }
 }
