@@ -1,7 +1,22 @@
-import Container from '/components/container'
-import Hero from '/components/hero'
+import { getAllPosts } from 'lib/api'
+import Container from 'components/container'
+import Hero from 'components/hero'
+import Posts from 'components/posts'
+import Pagination from 'components/pagination'
+import { getPlaiceholder } from 'plaiceholder'
 
-export default function Home() {
+// ローカルの代替アイキャッチ画像
+import { eyecatchLocal } from 'lib/constants'
+
+export default async function Home() {
+  const posts = await getAllPosts(4)
+
+  for(const post of posts) {
+    if(!post.hasOwnProperty('eyecatch')) {
+      post.eyecatch = eyecatchLocal
+    }
+  }
+
   return (
     <Container>
       <Hero 
@@ -9,6 +24,9 @@ export default function Home() {
         subtitle='アウトプットしていくサイト'
         imageOn
       />
+
+      <Posts posts={posts} />
+      <Pagination nextUrl="/blog" nextText='More Posts' />
     </Container>
   )
 }
