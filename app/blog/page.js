@@ -1,5 +1,10 @@
+import { getAllPosts } from 'lib/api'
 import Container from '/components/container'
 import Hero from 'components/hero'
+import Posts from 'components/posts'
+
+// ローカルの代替アイキャッチ画像
+import { eyecatchLocal } from 'lib/constants'
 
 // サイトに関する情報
 import { siteMeta } from 'lib/constants'
@@ -8,13 +13,23 @@ const { siteTitle, siteUrl } = siteMeta
 // ベースのメタデータ
 import { openGraphMetadata, twitterMetadata } from 'lib/baseMetadata'
 
-export default function Blog() {
+export default async function Blog() {
+  const posts = await getAllPosts()
+
+  for(const post of posts) {
+    if(!post.hasOwnProperty('eyecatch')) {
+      post.eyecatch = eyecatchLocal
+    }
+  }
+
   return (
     <Container>
       <Hero 
         title='Blog'
         subtitle='Recent Posts'
       />
+
+      <Posts posts={posts} />
     </Container>
   )
 }
