@@ -1,6 +1,7 @@
 import styles from 'styles/posts.module.scss'
 import Link from 'next/link'
 import Image from 'next/image'
+import imgixLoader from '/lib/image'
 
 export default function Posts({ posts }) {
   return (
@@ -10,6 +11,7 @@ export default function Posts({ posts }) {
           <Link href={`/blog/${slug}`}>
             <figure>
               <Image
+                loader={imgixLoader}
                 src={eyecatch.url}
                 alt=""
                 width={eyecatch.width}

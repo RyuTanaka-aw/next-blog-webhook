@@ -35,7 +35,7 @@ export default async function Category({ params }) {
   )
 }
 
-export const dynamicParams = false
+export const dynamicParams = true
 export async function generateStaticParams() {
   const allCats = await getAllCategories()
 

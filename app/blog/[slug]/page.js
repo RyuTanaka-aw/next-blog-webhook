@@ -9,7 +9,8 @@ import ConvertBody from "components/convert-body";
 import PostCategories from "components/post-categories";
 import Pagination from "components/pagination";
 import Image from "next/image";
-import { getPlaiceholder } from "plaiceholder";
+import imgixLoader from '/lib/image'
+import { getPlaiceholder } from "plaiceholder";;
 
 // ローカルの代替アイキャッチ画像
 import { eyecatchLocal } from "lib/constants";
@@ -20,6 +21,7 @@ const { siteTitle, siteUrl } = siteMeta
 
 // ベースのメタデータ
 import { openGraphMetadata, twitterMetadata } from "lib/baseMetadata";
+import { notFound } from "next/navigation";
 
 export default async function Post({ params }) {
   const slug = params.slug
@@ -45,6 +47,7 @@ export default async function Post({ params }) {
 
         <figure>
           <Image
+            loader={imgixLoader}
             src={eyecatch.url}
             alt=""
             width={eyecatch.width}
@@ -79,7 +82,7 @@ export default async function Post({ params }) {
   )
 }
 
-export const dynamicParams = false
+export const dynamicParams = true
 export async function generateStaticParams() {
   const allSlugs = await getAllSlugs();
 

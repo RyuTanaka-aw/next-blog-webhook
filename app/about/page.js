@@ -5,7 +5,15 @@ import Contact from 'components/contact'
 import { TwoColumn, TwoColumnMain, TwoColumnSidebar } from 'components/two-column'
 import Accordion from 'components/accordion'
 import Image from 'next/image'
-import eycatch from 'images/about.jpg'
+import imgixLoader from '/lib/image'
+// import eycatch from 'images/about.jpg'
+
+const eyecatch = {
+  src: 'https://images.microcms-assets.io/assets/c5e21c401f6445c2af597ecbfe4873dc/44e315ed4a47430584327024278b82a8/about.jpg',
+  width: 1920,
+  height: 960,
+  blurDataURL: 'data:image/png;base64,'
+}
 
 // サイトに関する情報
 import { siteMeta } from 'lib/constants'
@@ -24,7 +32,8 @@ export default function About() {
 
       <figure>
         <Image
-          src={eycatch}
+          loader={imgixLoader}
+          src={eyecatch}
           alt=''
           sizes='100vw'
           width={1920}
@@ -91,15 +100,15 @@ export const metadata = {
     url: ogpUrl,
     images: [
       {
-        url: eycatch.src,
-        width: eycatch.width,
-        height: eycatch.height,
+        url: eyecatch.src,
+        width: eyecatch.width,
+        height: eyecatch.height,
       },
     ],
   },
   twitter: {
     ...twitterMetadata,
     description: pageDesc,
-    images: [eycatch.src],
+    images: [eyecatch.src],
   }
 }

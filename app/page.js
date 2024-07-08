@@ -7,6 +7,7 @@ import { getPlaiceholder } from 'plaiceholder'
 
 // ローカルの代替アイキャッチ画像
 import { eyecatchLocal } from 'lib/constants'
+import { log } from 'console'
 
 export default async function Home() {
   const posts = await getAllPosts(4)
@@ -27,6 +28,7 @@ export default async function Home() {
 
       <Posts posts={posts} />
       <Pagination nextUrl="/blog" nextText='More Posts' />
+      <img src='/react/next-blog-ssg/next.svg' alt="" />
     </Container>
   )
 }
